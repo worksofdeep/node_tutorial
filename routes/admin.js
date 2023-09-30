@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/add-product', (req, res, next) => {
-    res.send(`<form method="POST" action="/product">
+    res.send(`<form method="POST" action="/admin/product">
     <input type="text" name="title"/>
     <button type="submit">Submit</button>
     </form>`);
@@ -14,7 +14,7 @@ router.post('/product', (req, res, next) => {
     if (req['body'] && req['body']['title']) {
         res.send(`<h1>Product: ${req['body']['title']}</h1>`);
     } else {
-        res.redirect('/');
+        res.redirect('/shop');
     }
 });
 

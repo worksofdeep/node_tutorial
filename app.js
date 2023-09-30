@@ -16,8 +16,8 @@ app.use('/', (req, res, next) => {
 });
 
 // Routes
-app.use(adminRoutes);
-app.use(shopRoutes);
+app.use('/admin', adminRoutes);
+app.use('/shop', shopRoutes);
 
 // 404 Page for invalid/unmatched paths
 app.use('/', (req, res, next) => {
