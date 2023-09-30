@@ -3,16 +3,23 @@ const express = require('express');
 const app = express();
 
 // Add middle ware here - Start
-app.use((req, res, next) => {
-    console.log('first middleware');
-    next(); // allows to travel to next middleware
+
+app.use('/', (req, res, next) => {
+    console.log('Always run for all paths');
+    next();
 });
 
-app.use((req, res, next) => {
-    console.log('second middleware');
-    // res.setHeader(); // set response header - explicitly
-    res.send('<h1>HELLO from second middleware</h1>');
+app.use('/add-product', (req, res, next) => {
+    console.log('add product path');
+    res.send('<h1>Add Product</h1>');
 });
+
+app.use('/', (req, res, next) => {
+    console.log('Default Path');
+    // res.setHeader(); // set response header - explicitly
+    res.send('<h1>Default Path</h1>');
+});
+
 // Add middle ware here - End
 
 app.listen(3000);
