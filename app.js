@@ -13,14 +13,14 @@ app.use('/', (req, res, next) => {
     next();
 });
 
-app.use('/add-product', (req, res, next) => {
+app.get('/add-product', (req, res, next) => {
     res.send(`<form method="POST" action="/product">
     <input type="text" name="title"/>
     <button type="submit">Submit</button>
     </form>`);
 });
 
-app.use('/product', (req, res, next) => {
+app.post('/product', (req, res, next) => {
     console.log(req['body']);
     if (req['body'] && req['body']['title']) {
         res.send(`<h1>Product: ${req['body']['title']}</h1>`);
