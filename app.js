@@ -3,38 +3,21 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-// Third party middle ware
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
+// Third-party middleware
 app.use('/', bodyParser.urlencoded({ extended: false }))
 
-// Add middle ware here - Start
-
+// Custom middleware to run for all requests
 app.use('/', (req, res, next) => {
-    // console.log('Always run for all paths');
+    // console.log('Custom middleware to run for all requestss');
     next();
 });
 
-app.get('/add-product', (req, res, next) => {
-    res.send(`<form method="POST" action="/product">
-    <input type="text" name="title"/>
-    <button type="submit">Submit</button>
-    </form>`);
-});
-
-app.post('/product', (req, res, next) => {
-    console.log(req['body']);
-    if (req['body'] && req['body']['title']) {
-        res.send(`<h1>Product: ${req['body']['title']}</h1>`);
-    } else {
-        res.redirect('/');
-    }
-
-});
-
-app.use('/', (req, res, next) => {
-    res.send('<h1>Default Path</h1>');
-});
-
-// Add middle ware here - End
+// Routes
+app.use(adminRoutes);
+app.use(shopRoutes);
 
 app.listen(3000);
 
