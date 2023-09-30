@@ -1,16 +1,13 @@
 const express = require('express');
+const path = require('path');
 
 const router = express.Router();
 
 router.get('/add-product', (req, res, next) => {
-    res.send(`<form method="POST" action="/admin/product">
-    <input type="text" name="title"/>
-    <button type="submit">Submit</button>
-    </form>`);
+    res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'))
 });
 
-router.post('/product', (req, res, next) => {
-    console.log(req['body']);
+router.post('/add-product', (req, res, next) => {
     if (req['body'] && req['body']['title']) {
         res.send(`<h1>Product: ${req['body']['title']}</h1>`);
     } else {
