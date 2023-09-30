@@ -12,10 +12,11 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
     console.log('second middleware');
+    // res.setHeader(); // set response header - explicitly
+    res.send('<h1>HELLO from second middleware</h1>');
 });
 // Add middle ware here - End
 
 const server = http.createServer(app);
-
 server.listen(3000);
 
