@@ -19,5 +19,10 @@ app.use('/', (req, res, next) => {
 app.use(adminRoutes);
 app.use(shopRoutes);
 
+// 404 Page for invalid/unmatched paths
+app.use('/', (req, res, next) => {
+    res.status(404).send('<h1>Page not found</h1>');
+})
+
 app.listen(3000);
 
