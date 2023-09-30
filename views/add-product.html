@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product Page</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
 </head>
 
 <body>
@@ -12,7 +13,8 @@
         <li><a href="/">Shop</a></li>
         <li><a href="/admin/add-product">Add Product</a></li>
     </ul>
-    <div>
+    <div class="container">
+        <img src="/images/shop.png"/>
         <form method="POST" action="/admin/add-product">
             <input type="text" name="title" />
             <button type="submit">Submit</button>

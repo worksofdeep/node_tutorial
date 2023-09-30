@@ -8,7 +8,8 @@ const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 // Third-party middleware
-app.use('/', bodyParser.urlencoded({ extended: false }))
+app.use('/', bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Custom middleware to run for all requests
 app.use('/', (req, res, next) => {

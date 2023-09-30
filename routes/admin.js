@@ -10,7 +10,8 @@ router.get('/add-product', (req, res, next) => {
 
 router.post('/add-product', (req, res, next) => {
     if (req['body'] && req['body']['title']) {
-        res.send(`<h1>Product: ${req['body']['title']}</h1>`);
+        res.send(`<h1>Product: ${req['body']['title']}</h1>
+        <img src="/images/shop.png"/>`);
     } else {
         res.redirect('/shop');
     }
