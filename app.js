@@ -1,22 +1,36 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+// Third party middle ware
+app.use('/', bodyParser.urlencoded({ extended: false }))
 
 // Add middle ware here - Start
 
 app.use('/', (req, res, next) => {
-    console.log('Always run for all paths');
+    // console.log('Always run for all paths');
     next();
 });
 
 app.use('/add-product', (req, res, next) => {
-    console.log('add product path');
-    res.send('<h1>Add Product</h1>');
+    res.send(`<form method="POST" action="/product">
+    <input type="text" name="title"/>
+    <button type="submit">Submit</button>
+    </form>`);
+});
+
+app.use('/product', (req, res, next) => {
+    console.log(req['body']);
+    if (req['body'] && req['body']['title']) {
+        res.send(`<h1>Product: ${req['body']['title']}</h1>`);
+    } else {
+        res.redirect('/');
+    }
+
 });
 
 app.use('/', (req, res, next) => {
-    console.log('Default Path');
-    // res.setHeader(); // set response header - explicitly
     res.send('<h1>Default Path</h1>');
 });
 
