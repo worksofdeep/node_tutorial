@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-const mongoConnect = require('./util/database');
+const mongoConnect = require('./util/database').mongoConnect;
 
 const app = express();
 
@@ -27,9 +27,8 @@ app.use('/', (req, res, next) => {
     res.status(404).sendFile(path.join(__dirname, 'views', '404.html'))
 })
 
-mongoConnect((client) => {
-    console.log('app.js  mongodb connected');
-    // console.log('app.js  mongodb connected', client);
+mongoConnect(() => {
+    console.log('app.js -  mongodb connected');
     app.listen(3000);
 });
 
